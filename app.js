@@ -5,7 +5,7 @@ let numeroSecreto = definirNumeroSecreto(30, 1);
 let chute = null;
 
 while(chute !== numeroSecreto) {
-  chute = parseInt(prompt(`Chute um número de 1 - 30, número: ${numeroSecreto}`));
+  chute = parseInt(prompt(`Chute um número de 1 - 30`));
 
   if(typeof chute !== 'number') {
     alert('Digite um número válido!');
