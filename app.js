@@ -1,23 +1,31 @@
+alert('Olá! Você está em um jogo de adivinhar o número!');
+const limiteNumero = parseInt(prompt('Por padrão, o número secreto fica entre 0 - 30, mas agora você pode escolher o máximo!'));
+
 const definirNumeroSecreto = (max, min) =>  (Math.floor(Math.random() * (max - min) + min));
 
-let numeroSecreto = definirNumeroSecreto(30, 1);
+let numeroSecreto = definirNumeroSecreto(limiteNumero, 1);
 
-let chute = null;
+let chute;
+let tentativas;
 
 while(chute !== numeroSecreto) {
-  chute = parseInt(prompt(`Chute um número de 1 - 30`));
+  chute = parseInt(prompt(`Chute um número de 1 - ${limiteNumero}`));
 
   if(typeof chute !== 'number') {
     alert('Digite um número válido!');
+    break;
   }
 
-  if(typeof chute === 'number' && chute > numeroSecreto) {
-    alert('O número secreto é menor que o número chutado!');
-  } else if(typeof chute === 'number' && numeroSecreto > chute) {
-    alert('O número secreto é maior que o número chutado!');
+  if(chute > numeroSecreto) {
+    alert(`Você errou! O número secreto é menor que ${chute}`);
+  } else if(numeroSecreto > chute) {
+    alert(`Você errou! O número secreto é maior que ${chute}`);
   }
 
-  if(typeof chute === 'number' && chute === numeroSecreto) {
-    alert('Parabéns, você acertou o número secreto');
+  const palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
+
+  if(chute === numeroSecreto) {
+    alert(`Parabéns! Você acertou o número secreto em ${tentativas} ${palavraTentativa}, era ${numeroSecreto}!`);
+    break;
   }
 }
